@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
       body { font-family: 'Inter', sans-serif; background: #000; color: white; }
-      /* Custom scrollbar */
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: #111; }
       ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
@@ -17,148 +15,129 @@
     </style>
 </head>
 <body class="h-screen w-screen overflow-hidden flex flex-col bg-black">
-    <!-- Header -->
-    <div class="bg-gray-900/90 backdrop-blur p-3 md:p-4 border-b border-gray-800 flex justify-between items-center z-50 shrink-0">
-        <h1 class="font-bold text-base md:text-lg truncate mr-2">
-            TRAINER<span class="text-yellow-400">SLIDE</span> 
-            <span class="text-gray-500 text-xs md:text-sm font-normal hidden sm:inline">| Rutina de Cuádriceps: Explosión y Definición</span>
-        </h1>
-        <div class="flex gap-2 shrink-0">
-            <button onclick="prevSlide()" id="btnPrev" class="px-3 py-1.5 md:px-4 md:py-2 bg-gray-800 rounded-full hover:bg-gray-700 disabled:opacity-30 text-xs md:text-sm transition-colors font-medium">Ant</button>
-            <span id="counter" class="px-2 py-1.5 md:px-3 md:py-2 font-mono text-yellow-400 text-xs md:text-sm flex items-center">1 / 1</span>
-            <button onclick="nextSlide()" id="btnNext" class="px-3 py-1.5 md:px-4 md:py-2 bg-yellow-400 text-black font-bold rounded-full hover:bg-yellow-300 disabled:opacity-30 text-xs md:text-sm transition-colors">Sig</button>
+
+<div class="bg-gray-900/90 backdrop-blur p-3 md:p-4 border-b border-gray-800 flex justify-between items-center z-50 shrink-0">
+    <h1 class="font-bold text-base md:text-lg truncate mr-2">
+        TRAINER<span class="text-yellow-400">SLIDE</span>
+        <span class="text-gray-500 text-xs md:text-sm font-normal hidden sm:inline">
+            | Rutina de Cuádriceps: Explosión y Definición
+        </span>
+    </h1>
+    <div class="flex gap-2 shrink-0">
+        <button onclick="prevSlide()" id="btnPrev"
+            class="px-3 py-1.5 md:px-4 md:py-2 bg-gray-800 rounded-full hover:bg-gray-700 disabled:opacity-30 text-xs md:text-sm">
+            Ant
+        </button>
+        <span id="counter"
+            class="px-2 py-1.5 md:px-3 md:py-2 font-mono text-yellow-400 text-xs md:text-sm flex items-center">
+            1 / 1
+        </span>
+        <button onclick="nextSlide()" id="btnNext"
+            class="px-3 py-1.5 md:px-4 md:py-2 bg-yellow-400 text-black font-bold rounded-full hover:bg-yellow-300 disabled:opacity-30 text-xs md:text-sm">
+            Sig
+        </button>
+    </div>
+</div>
+
+<div id="slideContainer" class="flex-1 flex items-center justify-center p-0 md:p-4 relative w-full overflow-hidden"></div>
+
+<script>
+const workout = {
+"title":"Rutina de Cuádriceps: Explosión y Definición",
+"slides":[
+{
+"title":"Triserie 3: Potencia y Negativas (Método Pirámide y Negativas)",
+"exercises":[
+{
+"name":"Sentadilla Frontal con Barra (Front Squat)",
+"reps":"10, 8, 6, 4 (aumentando peso)",
+"sets":4,
+"notes":"Codos altos, core apretado, baja hasta que los muslos estén paralelos al suelo o más profundo. Descanso mínimo.",
+"videoUrl":"https://drive.google.com/file/d/11njfXMIp5LRcZs5DC6Gkt2rDsypoQsaC/view?usp=sharing"
+},
+{
+"name":"Zancadas Caminando con Mancuernas (Walking Lunges)",
+"reps":"10-12 pasos por pierna",
+"sets":4,
+"notes":"Pasos controlados, rodilla trasera casi toca el suelo. Enfócate en la activación del cuádriceps al subir.",
+"videoUrl":"https://drive.google.com/file/d/10l11twIyZPrSADrj2iVP37TzuKxxVlFL/view?usp=sharing"
+},
+{
+"name":"Curl Nórdico Inverso Asistido (Reverse Nordic Curl Negatives)",
+"reps":"6-8 repeticiones (negativas lentas)",
+"sets":4,
+"notes":"Controla el descenso hacia atrás lo más lento posible (3-5 segundos).",
+"videoUrl":"https://drive.google.com/file/d/1Tnj0I1IsQH-5jZ9Mpo_14BEXkTZlsLHa/view?usp=sharing"
+}
+]
+},
+{
+"title":"Triserie 4: Agotamiento Final (Método Negativas)",
+"exercises":[
+{
+"name":"Sentadilla Goblet (Goblet Squat)",
+"reps":"12, 10, 8, 12",
+"sets":4,
+"notes":"Sujeta la mancuerna al pecho y busca profundidad.",
+"videoUrl":"https://drive.google.com/file/d/190tUKX1nw8Qbc7CN0YZNkW-P_FA3krXh/view?usp=sharing"
+},
+{
+"name":"Extensión de Cuádriceps – Énfasis en Negativas",
+"reps":"8-10 repeticiones",
+"sets":4,
+"notes":"Negativas lentas de 3-4 segundos.",
+"videoUrl":"https://drive.google.com/file/d/1bb0m7N8IKb7z7p2U7SyIcNVl7e5gi83A/view?usp=sharing"
+},
+{
+"name":"Paso-Arriba al Cajón (Step-Ups to Box)",
+"reps":"10-12 por pierna",
+"sets":4,
+"notes":"Controla el descenso para mayor tensión.",
+"videoUrl":"https://drive.google.com/file/d/1TL1o8K7eT5tDFkvwFLpzyZeKPyjG4LST/view?usp=sharing"
+}
+]
+}
+]
+};
+
+function getEmbedUrl(url) {
+    if (!url) return null;
+    const drive = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+    if (drive) return `https://drive.google.com/file/d/${drive[1]}/preview`;
+    return url;
+}
+
+let currentIndex = 0;
+
+function renderSlide(i) {
+    currentIndex = i;
+    const slide = workout.slides[i];
+    const ex = slide.exercises[0];
+    const video = getEmbedUrl(ex.videoUrl);
+
+    document.getElementById("slideContainer").innerHTML = `
+    <div class="w-full md:max-w-6xl h-full md:aspect-video flex bg-black border border-gray-800">
+        <div class="w-full md:w-5/12 bg-gray-900">
+            <iframe src="${video}" class="w-full h-full" allowfullscreen></iframe>
         </div>
-    </div>
-
-    <!-- Main Slide Area -->
-    <div id="slideContainer" class="flex-1 flex items-center justify-center p-0 md:p-4 relative w-full overflow-hidden">
-        <!-- Content injected here by JS -->
-    </div>
-
-    <script>
-        const workout = {"title":"Rutina de Cuádriceps: Explosión y Definición","subtitle":"Método Triserie, Negativas y Pirámide para Piernas de Acero","slides":[{"title":"Calentamiento Dinámico","exercises":[{"name":"Movilidad Articular","reps":"5 minutos","sets":1,"notes":"Rotaciones de tobillos, rodillas y caderas.","id":"c73d61a0-7b00-45b7-ba9f-38063bff1874","videoUrl":"","isVideoLoading":false},{"name":"Sentadillas sin peso","reps":"15 repeticiones","sets":2,"notes":"Concéntrate en la profundidad y el rango completo de movimiento.","id":"70ed34b6-edb5-4371-9e1d-88a6d4b22d90","videoUrl":"","isVideoLoading":false},{"name":"Zancadas sin peso","reps":"10 por pierna","sets":2,"notes":"Activa los cuádriceps y glúteos de forma controlada.","id":"b8a7445d-f67a-4a05-b561-7b1d02642fbe","videoUrl":"","isVideoLoading":false}],"id":"2c2bbabd-e579-4580-a5d1-6f1e86862809"},{"title":"Triserie 1: Fuerza y Volumen (Método Pirámide)","exercises":[{"name":"Prensa de Piernas (Leg Press)","reps":"12, 10, 8, 6 (aumentando peso)","sets":4,"notes":"Controla el descenso y empuja con fuerza, sintiendo el trabajo en los cuádriceps. Descanso mínimo entre ejercicios.","id":"d712b2c0-2c04-4eb3-9e54-ec2ec726413a","videoUrl":"https://drive.google.com/file/d/1Y8lVNKzxnRfNYAHpOKrbdTDoAEbtLcMX/view?usp=sharing","isVideoLoading":false},{"name":"Extensión de Cuádriceps (Leg Extension)","reps":"12-15 repeticiones","sets":4,"notes":"Aprieta los cuádriceps en la cima del movimiento por un segundo.","id":"354628bb-90d3-4ade-90e3-a188ffbcf593","videoUrl":"https://drive.google.com/file/d/1bb0m7N8IKb7z7p2U7SyIcNVl7e5gi83A/view?usp=sharing","isVideoLoading":false},{"name":"Sentadilla Sissy (Sissy Squat)","reps":"10-12 repeticiones","sets":4,"notes":"Mantén el torso recto, rodillas hacia adelante, elevando los talones. Concéntrate en el estiramiento del cuádriceps.","id":"e5b40dbc-134f-4062-a8a5-2f2f858b0699","videoUrl":"https://drive.google.com/file/d/1w76tAhcRPTbLblNPi65QN1G5P0yZA2k5/view?usp=sharing","isVideoLoading":false}],"id":"7be2f02c-8a29-44f5-87f7-f4456c7e01ed"},{"title":"Triserie 2: Resistencia y Control (Método Pirámide)","exercises":[{"name":"Sentadilla Hack (Hack Squat)","reps":"10, 8, 6, 10-12 (ajustando peso)","sets":4,"notes":"Mantén la espalda pegada al soporte, bajando profundo y empujando con los cuádriceps. Descanso mínimo.","id":"0041ee3c-0dc3-442d-bfa2-db2d8bbbc837","videoUrl":"https://drive.google.com/file/d/1gag8Ektxo9emUXyFKD-ZbWVTRYSUnktD/view?usp=sharing","isVideoLoading":false},{"name":"Sentadilla Búlgara con Mancuernas (Bulgarian Split Squat)","reps":"10-12 por pierna","sets":4,"notes":"Enfócate en el equilibrio y el control, manteniendo el torso erguido.","id":"1b711d6d-eb9a-4021-ba4c-8c08d541131e","videoUrl":"https://drive.google.com/file/d/14wzM0Z13BRRQM8DTjteTi5PI-ViCU_0Q/view?usp=sharing","isVideoLoading":false},{"name":"Sentadilla Isométrica en Pared (Wall Sit)","reps":"30-45 segundos","sets":4,"notes":"Mantén las rodillas a 90 grados y la espalda recta contra la pared. Resiste la quemazón.","id":"2f142267-b9ac-4d88-8e91-9bc2d2e7d571","videoUrl":"https://drive.google.com/file/d/14wzM0Z13BRRQM8DTjteTi5PI-ViCU_0Q/view?usp=sharing","isVideoLoading":false}],"id":"aebf16fd-582a-4503-bb18-051dba65136c"},{"title":"Triserie 3: Potencia y Negativas (Método Pirámide y Negativas)","exercises":[{"name":"Sentadilla Frontal con Barra (Front Squat)","reps":"10, 8, 6, 4 (aumentando peso)","sets":4,"notes":"Codos altos, core apretado, baja hasta que los muslos estén paralelos al suelo o más profundo. Descanso mínimo.","id":"7666a86d-a528-4a0e-b3f2-5848cb10b836","videoUrl":"","isVideoLoading":false},{"name":"Zancadas Caminando con Mancuernas (Walking Lunges)","reps":"10-12 pasos por pierna","sets":4,"notes":"Pasos controlados, rodilla trasera casi toca el suelo. Enfócate en la activación del cuádriceps al subir.","id":"d23d1103-6e01-4918-a565-c95dac0d0746","videoUrl":"","isVideoLoading":false},{"name":"Curl Nórdico Inverso Asistido (Reverse Nordic Curl Negatives)","reps":"6-8 repeticiones (negativas lentas)","sets":4,"notes":"Controla el descenso hacia atrás lo más lento posible (3-5 segundos), utilizando solo los cuádriceps. Asístete con las manos si es necesario para volver a la posición inicial.","id":"533b5764-8afb-4911-998d-adeebc50cc17","videoUrl":"","isVideoLoading":false}],"id":"7a2528e9-54e0-40a6-ba8e-f0e3bff2def9"},{"title":"Triserie 4: Agotamiento Final (Método Negativas)","exercises":[{"name":"Sentadilla Goblet (Goblet Squat)","reps":"12, 10, 8, 12 (el último set más ligero para agotar)","sets":4,"notes":"Sujeta la mancuerna al pecho, busca que los codos pasen entre las rodillas en la parte baja para mayor profundidad. Descanso mínimo.","id":"826dd5ea-42e9-48fb-b389-09645bb7495a","videoUrl":"","isVideoLoading":false},{"name":"Extensión de Cuádriceps (Leg Extension) – Énfasis en Negativas","reps":"8-10 repeticiones (fase negativa de 3-4 segundos)","sets":4,"notes":"Sube el peso con ambas piernas y baja lentamente con una (o con ambas de forma muy controlada) para enfatizar la fase negativa.","id":"83cc12ba-b89c-4e03-bf7d-708a418a9a76","videoUrl":"","isVideoLoading":false},{"name":"Paso-Arriba al Cajón (Step-Ups to Box)","reps":"10-12 por pierna","sets":4,"notes":"Concéntrate en empujar con el cuádriceps de la pierna que sube. Controla el descenso para maximizar el tiempo bajo tensión.","id":"abd64bc1-18c2-4c57-a973-28a5894fe844","videoUrl":"","isVideoLoading":false}],"id":"c12c98fb-6a81-42aa-956e-1894c9c3a9a1"},{"title":"Estiramiento y Recuperación","exercises":[{"name":"Estiramiento de Cuádriceps de pie","reps":"30 segundos por pierna","sets":2,"notes":"Toma tu tobillo y tira el talón hacia el glúteo.","id":"82f56983-5325-4e03-a850-57d6e09089ca","videoUrl":"","isVideoLoading":false},{"name":"Estiramiento de Isquiotibiales (toe touch)","reps":"30 segundos","sets":2,"notes":"Piernas estiradas, intenta tocar las puntas de tus pies.","id":"d6d69fe2-ed58-4c0b-a69b-506083993720","videoUrl":"","isVideoLoading":false},{"name":"Estiramiento de Aductores","reps":"30 segundos","sets":2,"notes":"Sentado, une las plantas de los pies y deja caer las rodillas hacia los lados.","id":"b598f0b4-d898-46d8-971a-9d79ab9d2d9f","videoUrl":"","isVideoLoading":false}],"id":"b3a2728a-aeb7-4966-bb81-fa1833cf6bcf"}]};
-        let currentIndex = 0;
-
-        function getEmbedUrl(url) {
-            if (!url) return null;
-            // Google Drive: Reverting to preview link which is reliable (unlike direct stream)
-            const driveRegex = /drive\.google\.com\/file\/d\/([-_\w]+)/;
-            const driveMatch = url.match(driveRegex);
-            if (driveMatch) return "https://drive.google.com/file/d/" + driveMatch[1] + "/preview";
-
-            // YouTube
-            const ytRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
-            const ytMatch = url.match(ytRegex);
-            if (ytMatch && ytMatch[2].length === 11) {
-                return "https://www.youtube.com/embed/" + ytMatch[2] + "?autoplay=1&mute=1&loop=1&playlist=" + ytMatch[2] + "&controls=1&playsinline=1";
-            }
-            
-            return url;
-        }
-
-        function renderSlide(index, specificExerciseIdx = null) {
-            currentIndex = index;
-            const slide = workout.slides[index];
-            const container = document.getElementById('slideContainer');
-            
-            // Logic to determine active video
-            let activeExIndex = 0;
-            if (specificExerciseIdx !== null) {
-                activeExIndex = specificExerciseIdx;
-            } else {
-                const firstWithVideoIdx = slide.exercises.findIndex(ex => ex.videoUrl);
-                activeExIndex = firstWithVideoIdx !== -1 ? firstWithVideoIdx : 0;
-            }
-            const activeEx = slide.exercises[activeExIndex];
-            const videoUrl = activeEx.videoUrl;
-            const embedUrl = getEmbedUrl(videoUrl);
-
-            let mediaHtml = '';
-            if (embedUrl) {
-                // Use iframe for YouTube AND Drive to ensure stability
-                if (embedUrl.includes('youtube.com') || embedUrl.includes('drive.google.com')) {
-                    mediaHtml = '<iframe src="' + embedUrl + '" class="w-full h-full object-cover" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                } else {
-                     mediaHtml = '<video src="' + embedUrl + '" class="w-full h-full object-cover" controls playsinline loop autoplay muted></video>';
-                }
-            } else {
-                mediaHtml = '<div class="w-full h-full flex items-center justify-center bg-gray-900 text-gray-600 flex-col p-6"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p class="mt-2 text-xs">Sin video</p></div>';
-            }
-
-            const exercisesHtml = slide.exercises.map((ex, i) => {
-                const isActive = i === activeExIndex;
-                const textClass = isActive ? 'text-yellow-400' : 'text-white hover:text-yellow-200';
-                const numberClass = isActive ? 'text-yellow-400' : 'text-white/20';
-                const bgClass = isActive ? 'bg-gray-900/50' : '';
-
-                return `
-                <div class="flex items-start gap-3 md:gap-4 mb-4 md:mb-6 group cursor-pointer p-2 rounded transition-colors ${bgClass}" onclick="renderSlide(${index}, ${i})">
-                    <span class="text-3xl md:text-4xl font-black ${numberClass} leading-none select-none transition-colors">${i + 1}</span>
-                    <div class="flex-1">
-                        <h4 class="text-lg md:text-xl font-bold ${textClass} leading-tight transition-colors">${ex.name}</h4>
-                        <div class="mt-1 flex items-center gap-3 text-gray-300 font-medium text-sm md:text-base">
-                            <span class="text-yellow-200">${ex.reps} reps</span>
-                            <span class="text-gray-600">|</span>
-                            <span class="text-yellow-200">${ex.sets} series</span>
-                        </div>
-                        ${ex.notes ? '<p class="text-xs text-gray-500 mt-1 italic leading-relaxed">' + ex.notes + '</p>' : ''}
-                    </div>
+        <div class="w-full md:w-7/12 p-6 overflow-y-auto">
+            <h2 class="text-xl font-black text-yellow-400 mb-4">${slide.title}</h2>
+            ${slide.exercises.map((e,idx)=>`
+                <div class="mb-4">
+                    <h3 class="font-bold">${idx+1}. ${e.name}</h3>
+                    <p class="text-sm text-gray-400">${e.reps} | ${e.sets} series</p>
                 </div>
-            `}).join('');
+            `).join("")}
+        </div>
+    </div>`;
+    document.getElementById("counter").innerText = `${i+1} / ${workout.slides.length}`;
+}
 
-            container.innerHTML = `
-                <div class="w-full md:max-w-6xl h-full md:h-auto md:aspect-video bg-black md:border border-gray-800 md:shadow-2xl flex flex-col md:flex-row overflow-hidden">
-                    <!-- Top/Left: Video -->
-                    <div class="w-full md:w-5/12 aspect-video md:aspect-auto md:h-full bg-gray-900 relative border-b md:border-b-0 md:border-r border-gray-800 shrink-0">
-                        ${mediaHtml}
-                         ${slide.exercises.length > 1 && embedUrl ? '<div class="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-black/70 px-2 py-1 md:px-3 rounded text-[10px] md:text-xs text-yellow-400 font-bold z-10 max-w-[90%] truncate">' + activeEx.name + '</div>' : ''}
-                    </div>
-                    <!-- Bottom/Right: Content -->
-                    <div class="w-full md:w-7/12 flex-1 md:h-full p-4 md:p-8 flex flex-col relative overflow-y-auto">
-                        <div class="absolute top-4 right-4 md:top-6 md:right-8 w-10 h-10 md:w-16 md:h-16 rounded-full bg-yellow-400 text-black flex items-center justify-center text-xl md:text-4xl font-black shadow-lg z-20">
-                            ${index + 1}
-                        </div>
-                        <div class="mb-4 md:mb-6 pr-14 md:pr-20">
-                            <h3 class="text-yellow-400 font-bold tracking-wider text-[10px] md:text-xs uppercase mb-1">TRAINER SLIDE</h3>
-                            <h2 class="text-xl md:text-2xl font-black text-white uppercase leading-tight">${slide.title}</h2>
-                        </div>
-                        <div class="space-y-1">
-                            ${exercisesHtml}
-                        </div>
-                        
-                        <!-- Mobile bottom spacer -->
-                        <div class="h-10 md:hidden"></div>
-                    </div>
-                </div>
-            `;
+function nextSlide(){ if(currentIndex < workout.slides.length-1) renderSlide(++currentIndex); }
+function prevSlide(){ if(currentIndex > 0) renderSlide(--currentIndex); }
 
-            // Update controls
-            document.getElementById('counter').innerText = (index + 1) + ' / ' + workout.slides.length;
-            document.getElementById('btnPrev').disabled = index === 0;
-            document.getElementById('btnNext').disabled = index === workout.slides.length - 1;
-        }
+renderSlide(0);
+</script>
 
-        function nextSlide() {
-            if (currentIndex < workout.slides.length - 1) {
-                currentIndex++;
-                renderSlide(currentIndex);
-            }
-        }
-
-        function prevSlide() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                renderSlide(currentIndex);
-            }
-        }
-
-        renderSlide(0);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
-        });
-    </script>
 </body>
 </html>
-  
